@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
-@FeignClient(name = "service-vod")
+@FeignClient(name = "service-vod", fallback = VodFileDegradeFeignClient.class)
 @Component
 public interface VodClient {
     //定义调用方法的路径
@@ -22,6 +22,7 @@ public interface VodClient {
     @DeleteMapping("eduvod/video/delete-batch")
     public R deleteBatch(@RequestParam("videoIdList") List<String> videoIdList);
 }
+
 
 
 
